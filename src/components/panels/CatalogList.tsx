@@ -46,28 +46,29 @@ export function CatalogList({
         </div>
       ))}
 
+      {/* 가구 추가 영역 */}
       {customCatalog.length > 0 && (
         <>
-          <div
+          <h4
             style={{
-              fontSize: 10,
-              color: "#4A6A4A",
+              color: "#fff",
               letterSpacing: "0.1em",
-              textTransform: "uppercase",
               margin: "10px 0 5px",
             }}
           >
-            커스텀
-          </div>
+            박스 추가
+          </h4>
           {customCatalog.map((f, i) => (
             <div
               key={f.type}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 7,
-                marginBottom: 3,
-              }}
+              className="list"
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#162A3E")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#0D1B2E")
+              }
+              // e.currentTarget.style.background = "rgb(13, 27, 46)")
             >
               <div
                 onMouseDown={(e) => onDragStart(e, f)}
@@ -76,27 +77,15 @@ export function CatalogList({
                   display: "flex",
                   alignItems: "center",
                   gap: 7,
-                  padding: "6px 8px",
+                  padding: "6px 0",
                   borderRadius: 5,
-                  background: "#0D1E0D",
-                  border: "1px solid #1E3A1E",
                   cursor: "grab",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#142A14")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "#0D1E0D")
-                }
               >
-                <span style={{ fontSize: 15 }}>{f.icon}</span>
+                <span className="icn">{f.icon}</span>
                 <div>
-                  <div
-                    style={{ fontSize: 11, color: "#A8C8A8", fontWeight: 500 }}
-                  >
-                    {f.label}
-                  </div>
-                  <div style={{ fontSize: 9, color: "#2A4A2A" }}>
+                  <div className="label">{f.label}</div>
+                  <div className="size">
                     {f.w}×{f.h}칸
                   </div>
                 </div>
@@ -147,7 +136,7 @@ export function CatalogList({
           e.currentTarget.style.borderColor = "#2A5A2A";
         }}
       >
-        <span style={{ fontSize: 14 }}>+</span> 커스텀 추가
+        <h3>+ 추가</h3>
       </button>
     </>
   );

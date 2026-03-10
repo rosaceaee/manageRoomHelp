@@ -67,16 +67,11 @@ export function TodoPanel({ item, onUpdate }: TodoPanelProps) {
       {/* Modal -  furniture selected */}
       {/* Header */}
       <div className="head">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            marginBottom: 4,
-          }}
-        >
-          <span style={{ fontSize: 14 }}>{item.icon}</span>
-          <h4 style={{ fontWeight: 700, color: "#D0D8F0" }}>{item.label}</h4>
+        <div className="item-info">
+          <h4 style={{ fontSize: 14 }}>{item.icon}</h4>
+          <h4 className="name" style={{ fontWeight: 700, color: "#D0D8F0" }}>
+            {item.label}
+          </h4>
         </div>
         <div className="chip-wrap">
           {trashCount > 0 && (

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface BtnProps {
   onClick?: () => void;
   children: React.ReactNode;
@@ -9,6 +7,7 @@ interface BtnProps {
   green?: boolean;
   red?: boolean;
   size: "small" | "mid" | "lg";
+  className: string;
 }
 
 export function Btn({
@@ -19,6 +18,7 @@ export function Btn({
   sm,
   green,
   red,
+  className,
 }: BtnProps) {
   const bg = danger
     ? "#2A1010"
@@ -63,6 +63,7 @@ export function Btn({
       }}
       onMouseEnter={(e) => (e.currentTarget.style.filter = "brightness(1.3)")}
       onMouseLeave={(e) => (e.currentTarget.style.filter = "brightness(1)")}
+      className={className}
     >
       {children}
     </button>

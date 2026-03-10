@@ -44,7 +44,7 @@ export default function App() {
   const selItem = items.find((i) => i.id === selItemId);
   const tobeSelItem = tobeItems.find((i) => i.id === tobeSelItemId);
 
-  // ── Persist ──
+  //  Persist
   const persistState: PersistedState = {
     items,
     sections,
@@ -69,7 +69,7 @@ export default function App() {
     handleLoadState
   );
 
-  // ── Global mouseup ──
+  //  Global mouseup
   useEffect(() => {
     const up = () => {
       setCatalogDrag(null);
@@ -79,13 +79,13 @@ export default function App() {
     return () => window.removeEventListener("mouseup", up);
   }, []);
 
-  // ── Setup ──
+  //  Setup
   const handleSetup = ({ sections }: { sections: RoomSection[] }) => {
     setSections(sections);
     setShowModal(false);
   };
 
-  // ── Compare mode ──
+  //  Compare mode
   const enterCompareMode = () => {
     setTobeItems(items.map((it) => ({ ...it, id: newId() })));
     setTobeSections(sections.map((s) => ({ ...s, id: newId() })));
@@ -104,7 +104,7 @@ export default function App() {
     exitCompareMode();
   };
 
-  // ── Item actions ──
+  //  Item actions
   const rotateItem = () =>
     selItemId &&
     setItems((p) =>
@@ -185,7 +185,7 @@ export default function App() {
           <section className="top">
             <h1 className="tit">🏠 방 정리를 하자</h1>
 
-            {/* 임시 비교모드 영역 */}
+            {/* 방 공간 관리 박스 */}
             {!compareMode && (
               <section
                 className="inner choose-space"
@@ -274,7 +274,7 @@ export default function App() {
               >
                 {t === "catalog"
                   ? "🛋 가구"
-                  : `🗑 버릴것${
+                  : `🗑 버릴 가구${
                       trashList.length > 0 ? ` (${trashList.length})` : ""
                     }`}
               </button>
@@ -397,7 +397,7 @@ export default function App() {
                   (e.currentTarget.style.background = "#0A1E30")
                 }
               >
-                📥 작업파일 저장
+                📥 작업내역 저장
               </button>
               <button
                 onClick={handleImport}
@@ -426,18 +426,12 @@ export default function App() {
             overflow: "hidden",
           }}
         >
-          {/* 툴바 */}
+          {/* 우측 상단 툴바 */}
           <div
             style={{
-              height: 46,
-              background: "#0F3460",
               borderBottom: "1px solid #1E3A60",
-              display: "flex",
-              alignItems: "center",
-              padding: "0 16px",
-              gap: 8,
-              flexShrink: 0,
             }}
+            className="toolbar-wrap"
           >
             {compareMode ? (
               <>
@@ -528,20 +522,34 @@ export default function App() {
               <>
                 {selItem ? (
                   <>
-                    <span style={{ fontSize: 13, color: "#7A9AB4" }}>
-                      <strong style={{ color: "#E8E4DC" }}>
+                    <div className="selected-box-wrap">
+                      <strong className="item">
                         {selItem.icon} {selItem.label}
                       </strong>{" "}
                       선택됨
-                    </span>
-                    <Btn onClick={rotateItem}>↻ 회전</Btn>
-                    <Btn danger onClick={deleteItem}>
-                      🗑 삭제
-                    </Btn>
-                    <Btn warn onClick={toTrash}>
-                      📋 버릴 목록
-                    </Btn>
-                    <div
+                    </div>
+
+                    <div className="btn-wrap">
+                      <Btn onClick={rotateItem} className="btn btn-rotate">
+                        ↻ 회전하기
+                      </Btn>
+                      <Btn
+                        danger
+                        onClick={deleteItem}
+                        className="btn btn-del-box"
+                      >
+                        🗑 도면에서 삭제
+                      </Btn>
+                      <Btn
+                        warn
+                        onClick={toTrash}
+                        className="btn btn-del-furniture"
+                      >
+                        📋 가구 버리기
+                      </Btn>
+                    </div>
+
+                    {/*  <div
                       style={{
                         marginLeft: "auto",
                         display: "flex",
@@ -549,10 +557,10 @@ export default function App() {
                         gap: 5,
                       }}
                     >
-                      <span style={{ fontSize: 11, color: "#3A5A7A" }}>
+                        <span style={{ fontSize: 11, color: "#3A5A7A" }}>
                         메모
                       </span>
-                      <input
+                    <input
                         value={selItem.note}
                         onChange={(e) =>
                           setItems((p) =>
@@ -574,22 +582,25 @@ export default function App() {
                           width: 180,
                           outline: "none",
                         }}
-                      />
-                    </div>
+                      /> 
+                    </div>*/}
                   </>
                 ) : selSectionId ? (
-                  <span style={{ fontSize: 12, color: "#4A6A8A" }}>
-                    섹션 선택됨.
-                    <span style={{ color: "#7A9AB4" }}>
+                  <div className="selected-box-wrap">
+                    <strong className="item">
+                      {" "}
                       모서리 드래그로 크기 조절, 이름 더블클릭으로 변경
-                    </span>
-                  </span>
+                    </strong>
+                  </div>
                 ) : (
-                  <span style={{ fontSize: 15, color: "#fff" }}>
-                    가구를 드래그해서 배치하거나 클릭하여 크기 조절 가능
-                  </span>
+                  <div className="selected-box-wrap">
+                    <strong className="item">
+                      {" "}
+                      가구를 드래그해서 배치하거나 클릭하여 크기 조절 가능
+                    </strong>
+                  </div>
                 )}
-                <button
+                {/* <button
                   onClick={enterCompareMode}
                   style={{
                     marginLeft: "auto",
@@ -613,7 +624,7 @@ export default function App() {
                   }
                 >
                   ⊞ As-Is / To-Be 비교 (예정)
-                </button>
+                </button> */}
               </>
             )}
           </div>
