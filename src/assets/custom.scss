@@ -1,0 +1,426 @@
+ul {
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+$bei: #cdc2bb;
+$drkbrwn: #421919;
+$indigo: #1e2e42;
+$brwn: #8c6b56;
+$ash: #2c2c29;
+$fff: #fff;
+$oat: #d9d9d9;
+
+.wrap {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  height: 100vh;
+  .box {
+    &.left {
+      background: $bei;
+      border-right: 1px solid #243050;
+      flex-direction: column;
+      flex-shrink: 0;
+      width: 20rem;
+      padding: 1rem;
+
+      .top {
+        background: $oat;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .tit {
+        font-size: 2rem;
+        color: #333;
+      }
+
+      .inner {
+        display: flex;
+        &.choose-space {
+          justify-content: stretch;
+          align-items: stretch;
+          flex-direction: column;
+          margin-bottom: 8px;
+          gap: 1rem;
+          padding: 1rem;
+          margin-top: 2rem;
+          background: rgba(66, 25, 25, 0.5);
+          border-radius: 10px;
+        }
+      }
+
+      .space-wrap {
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
+        flex: 1;
+        overflow: auto;
+        flex-direction: column;
+        width: 100%;
+        .space {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          padding: 13px 13px;
+          flex-grow: 1;
+        }
+      }
+
+      .tab {
+        display: flex;
+
+        .el {
+          flex: 1;
+          padding: 1rem 0;
+          border: none;
+          cursor: pointer;
+          font-size: 0.9rem;
+          background: none;
+          border: 1px solid $drkbrwn;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          &.active {
+            background-color: #0f3460;
+            color: #64b5f6;
+          }
+        }
+      }
+
+      .catalog-wrap {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px 10px;
+        max-height: 32rem;
+        background: $indigo;
+      }
+
+      .list {
+        display: flex;
+        align-items: center;
+        gap: 10px 20px;
+        padding: 6px 10px;
+        background: #0d1b2e;
+        border: 1px solid #1e2e42;
+
+        &.will-delete {
+          padding: 1rem;
+        }
+
+        .icn {
+          font-size: 1.4rem;
+        }
+
+        .label {
+          color: #c8d8e8;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        .size {
+          color: $fff;
+          font-size: 0.8rem;
+        }
+        .furniture-box {
+        }
+      }
+
+      .bottom-wrap {
+        padding: 10px 12px;
+        border-top: 1px solid rgb(36, 48, 80);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        button {
+          flex: 1 1 0%;
+          background: rgb(10, 30, 48);
+          border: 1px solid rgb(26, 74, 106);
+          border-radius: 7px;
+          color: rgb(90, 154, 212);
+          padding: 14px 0px;
+          font-size: 14px;
+          cursor: pointer;
+          font-weight: 600;
+
+          &.btn-init {
+            width: 100%;
+            background: rgb(24, 10, 10);
+            border: 1px solid rgb(58, 26, 26);
+            border-radius: 7px;
+            color: rgb(192, 96, 96);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    &.right {
+      width: 30rem;
+      background: $brwn;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// wrap 모음
+.notice-wrap {
+  &.success {
+  }
+  &.empty {
+    border: 1px solid;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .list {
+      padding: 1rem;
+    }
+
+    .tit {
+      &.none {
+        color: #fff;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+// Modal -  furniture selected
+
+.modal {
+  position: absolute;
+  top: 0;
+  background: $indigo;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  overflow: hidden;
+  user-select: none;
+
+  .head {
+    padding: 1rem 1rem 1rem;
+    border-bottom: 1px solid $oat;
+    background: #0f1a30;
+    .chip-wrap {
+      display: flex;
+      gap: 7px;
+
+      .chip {
+        font-size: 0.8rem;
+
+        &.delete {
+          color: #ef9a9a;
+          background: rgb(42, 16, 16);
+          border: 1px solid rgb(74, 32, 32);
+          border-radius: 10px;
+          padding: 1px 7px;
+        }
+
+        &.keep {
+          color: rgb(90, 187, 122);
+          background: rgb(10, 32, 24);
+          border: 1px solid rgb(26, 80, 48);
+          border-radius: 10px;
+          padding: 1px 7px;
+        }
+      }
+
+      //   .txt-teian{
+      //     font-size: 12px;
+      //     color: $oat;
+      //   }
+    }
+  }
+
+  .msg-none {
+    // 아직 항목이 없어요
+    font-size: 1rem;
+    padding: 2rem 1rem;
+    color: #fff;
+    text-align: center;
+    .txt-teian {
+      font-size: 12px;
+      color: $oat;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .lists {
+    padding: 10px 1rem;
+    border-bottom: 1px solid #1a2a3a;
+    margin: 1rem 8px;
+    background: $oat;
+
+    &:nth-child(1) {
+      margin: 10px 8px 1rem;
+    }
+
+    .inner {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+
+      .label {
+        flex-shrink: 0;
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+
+        cursor: pointer;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+
+      .txt {
+        font-size: 1rem;
+        color: $ash;
+        flex: 1 1 0%;
+        word-break: break-all;
+      }
+
+      .btn-del {
+        flex-shrink: 0;
+        background: transparent;
+        border: none;
+        color: rgb(58, 90, 122);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0px 2px;
+        line-height: 1;
+      }
+    }
+    .input.memo {
+      width: 100%;
+      background: transparent;
+      border-top: none;
+      border-right: none;
+      border-bottom: 1px dashed rgb(26, 42, 58);
+      border-left: none;
+      border-image: initial;
+      color: $ash;
+      font-size: 14px;
+      padding: 2px 6px;
+      outline: none;
+      box-sizing: border-box;
+    }
+  }
+
+  .add-wrap {
+    padding: 1rem;
+    border-top: 1px solid rgb(30, 46, 72);
+    display: flex;
+    gap: 6px;
+    .add-txt-input {
+      flex: 1 1 0%;
+      background: rgb(13, 27, 46);
+      border: 1px solid rgb(42, 58, 90);
+      border-radius: 6px;
+      color: rgb(200, 216, 232);
+      padding: 15px 8px;
+      font-size: 17px;
+      outline: none;
+    }
+    .btn-add {
+      background: #1a3a6a;
+
+      border: 1px solid #2a5a9a;
+      border-radius: 6px;
+      color: #7ab4f0;
+      font-size: 1rem;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  }
+}
+
+//
+
+// 공간 셀렉트 박스 chips
+.space-chips-wrap {
+  position: absolute;
+  border-radius: 6px;
+  cursor: "move";
+  box-sizing: "border-box";
+  z-index: 0;
+  .label-inner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .space-name {
+      font-size: 15px;
+      color: rgb(154, 208, 151);
+      background: rgba(8, 16, 32, 0.9);
+      padding: 3px 12px;
+      border-radius: 4px;
+      cursor: text;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .btn-del {
+      background: rgba(80, 16, 16, 0.85);
+      border: 1px solid rgb(160, 64, 64);
+      border-radius: 4px;
+      color: rgb(240, 128, 128);
+      font-size: 14px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+  }
+}
+//
+
+// box-furniture-on-canvas
+.box-furniture-on-canvas {
+  position: absolute;
+  border-radius: 5px;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  .badge-num {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 1px 5px;
+    line-height: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 999;
+  }
+}
+
+//
