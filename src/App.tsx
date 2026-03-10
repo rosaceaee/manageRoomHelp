@@ -408,11 +408,11 @@ export default function App() {
                   (e.currentTarget.style.background = "#0A1E30")
                 }
               >
-                📤 불러오기
+                📄 불러오기
               </button>
             </div>
             <button onClick={handleReset} className="btn-init">
-              🔄 초기화
+              초기화
             </button>
           </div>
         </div>
