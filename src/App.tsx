@@ -41,7 +41,7 @@ export default function App() {
   );
 
   const selItem = items.find((i) => i.id === selItemId);
-  const tobeSelItem = tobeItems.find((i) => i.id === tobeSelItemId);
+  // const tobeSelItem = tobeItems.find((i) => i.id === tobeSelItemId);
 
   //  Persist
   const persistState: PersistedState = {
@@ -128,19 +128,19 @@ export default function App() {
     setItems((p) => [...p, { ...ti, id: newId(), gx: 1, gy: 1 }]);
     setTrashList((p) => p.filter((i) => i.trashId !== ti.trashId));
   };
-  const rotateTobeItem = () =>
-    tobeSelItemId &&
-    setTobeItems((p) =>
-      p.map((it) =>
-        it.id === tobeSelItemId
-          ? { ...it, w: it.h, h: it.w, rotation: (it.rotation + 90) % 360 }
-          : it
-      )
-    );
-  const deleteTobeItem = () => {
-    setTobeItems((p) => p.filter((i) => i.id !== tobeSelItemId));
-    setTobeSelItemId(null);
-  };
+  // const rotateTobeItem = () =>
+  //   tobeSelItemId &&
+  //   setTobeItems((p) =>
+  //     p.map((it) =>
+  //       it.id === tobeSelItemId
+  //         ? { ...it, w: it.h, h: it.w, rotation: (it.rotation + 90) % 360 }
+  //         : it
+  //     )
+  //   );
+  // const deleteTobeItem = () => {
+  //   setTobeItems((p) => p.filter((i) => i.id !== tobeSelItemId));
+  //   setTobeSelItemId(null);
+  // };
   const addSection = () =>
     setSections((p) => [
       ...p,
@@ -151,10 +151,10 @@ export default function App() {
     e.preventDefault();
     setCatalogDrag({ ...f, gx: 0, gy: 0 });
   };
-  const startTobeCatalogDrag = (e: React.MouseEvent, f: CatalogItem) => {
-    e.preventDefault();
-    setTobeCatalogDrag({ ...f, gx: 0, gy: 0 });
-  };
+  // const startTobeCatalogDrag = (e: React.MouseEvent, f: CatalogItem) => {
+  //   e.preventDefault();
+  //   setTobeCatalogDrag({ ...f, gx: 0, gy: 0 });
+  // };
 
   const handleReset = () => {
     if (!confirm("초기화하고 처음부터 다시 설정할까요?")) return;
@@ -538,113 +538,19 @@ export default function App() {
               alignItems: "flex-start",
             }}
           >
-            {compareMode ? (
-              <div
-                style={{ display: "flex", gap: 0, alignItems: "flex-start" }}
-              >
-                {/* As-Is */}
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginBottom: 10,
-                      padding: "3px 16px",
-                      borderRadius: 20,
-                      background: "#1A1A2E",
-                      border: "1px solid #3A3A5A",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: "#7A7AAA",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    AS-IS
-                  </div>
-                  <RoomCanvas
-                    items={items}
-                    sections={sections}
-                    setItems={setItems}
-                    setSections={setSections}
-                    selItemId={null}
-                    setSelItemId={() => {}}
-                    selSectionId={null}
-                    setSelSectionId={() => {}}
-                    catalogDrag={null}
-                    setCatalogDrag={() => {}}
-                    readonly={true}
-                  />
-                </div>
-                <div
-                  style={{
-                    width: 2,
-                    background:
-                      "linear-gradient(to bottom, transparent, #3A3A5A, transparent)",
-                    margin: "36px 20px 0",
-                    alignSelf: "stretch",
-                    borderRadius: 2,
-                    flexShrink: 0,
-                  }}
-                />
-                {/* To-Be */}
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginBottom: 10,
-                      padding: "3px 16px",
-                      borderRadius: 20,
-                      background: "#0A2A18",
-                      border: "1px solid #2A6A40",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: "#4A9A6A",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    TO-BE ✏️
-                  </div>
-                  <RoomCanvas
-                    items={tobeItems}
-                    sections={tobeSections}
-                    setItems={setTobeItems}
-                    setSections={setTobeSections}
-                    selItemId={tobeSelItemId}
-                    setSelItemId={setTobeSelItemId}
-                    selSectionId={tobeSelSectionId}
-                    setSelSectionId={setTobeSelSectionId}
-                    catalogDrag={tobeCatalogDrag}
-                    setCatalogDrag={setTobeCatalogDrag}
-                    readonly={false}
-                  />
-                </div>
-              </div>
-            ) : (
-              <RoomCanvas
-                items={items}
-                sections={sections}
-                setItems={setItems}
-                setSections={setSections}
-                selItemId={selItemId}
-                setSelItemId={setSelItemId}
-                selSectionId={selSectionId}
-                setSelSectionId={setSelSectionId}
-                catalogDrag={catalogDrag}
-                setCatalogDrag={setCatalogDrag}
-                readonly={false}
-              />
-            )}
+            <RoomCanvas
+              items={items}
+              sections={sections}
+              setItems={setItems}
+              setSections={setSections}
+              selItemId={selItemId}
+              setSelItemId={setSelItemId}
+              selSectionId={selSectionId}
+              setSelSectionId={setSelSectionId}
+              catalogDrag={catalogDrag}
+              setCatalogDrag={setCatalogDrag}
+              readonly={false}
+            />
           </div>
         </div>
 
