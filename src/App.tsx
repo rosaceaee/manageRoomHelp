@@ -30,16 +30,6 @@ export default function App() {
   const [showCustomModal, setShowCustomModal] = useState(false);
   const [customCatalog, setCustomCatalog] = useState<CatalogItem[]>([]);
 
-  // Compare mode
-  const [compareMode, setCompareMode] = useState(false);
-  const [tobeItems, setTobeItems] = useState<FurnitureItemData[]>([]);
-  const [tobeSections, setTobeSections] = useState<RoomSection[]>([]);
-  const [tobeSelItemId, setTobeSelItemId] = useState<number | null>(null);
-  const [tobeSelSectionId, setTobeSelSectionId] = useState<number | null>(null);
-  const [tobeCatalogDrag, setTobeCatalogDrag] = useState<CatalogDrag | null>(
-    null
-  );
-
   const selItem = items.find((i) => i.id === selItemId);
   // const tobeSelItem = tobeItems.find((i) => i.id === tobeSelItemId);
 
@@ -72,7 +62,7 @@ export default function App() {
   useEffect(() => {
     const up = () => {
       setCatalogDrag(null);
-      setTobeCatalogDrag(null);
+      // setTobeCatalogDrag(null);
     };
     window.addEventListener("mouseup", up);
     return () => window.removeEventListener("mouseup", up);
