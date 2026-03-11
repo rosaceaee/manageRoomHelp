@@ -67,9 +67,9 @@ export function SetupModal({ onComplete }: SetupModalProps) {
           >
             방 배치 플래너
           </div>
-          <div style={{ fontSize: 12, color: "#4A6A8A", marginTop: 4 }}>
-            청소 & 재배치 계획을 세워보세요
-          </div>
+          <h4 style={{ fontSize: 12, color: "#4A6A8A", marginTop: 4 }}>
+            방에 있는 가구와 물건을 관리할 수 있습니다.
+          </h4>
         </div>
 
         {step === 1 && (
@@ -82,16 +82,15 @@ export function SetupModal({ onComplete }: SetupModalProps) {
                 marginBottom: 18,
               }}
             >
-              사는 집 형태를 선택해주세요
+              거주하는 집 유형을 선택해주세요.
             </p>
             <div style={{ display: "flex", gap: 14 }}>
               {[
-                { k: "one", emoji: "🚪", title: "원룸", desc: "하나의 공간" },
+                { k: "one", emoji: "☝️", title: "원룸" },
                 {
                   k: "two",
-                  emoji: "🏠",
+                  emoji: " ✌️",
                   title: "투룸+",
-                  desc: "침실·거실 등 분리 공간",
                 },
               ].map((o) => (
                 <button
@@ -137,10 +136,7 @@ export function SetupModal({ onComplete }: SetupModalProps) {
                 marginBottom: 18,
               }}
             >
-              공간 이름을 정해주세요{" "}
-              <span style={{ color: "#2A4A6A", fontSize: 11 }}>
-                (나중에 변경 가능)
-              </span>
+              관리할 방 이름을 입력해주세요. (추후 변경 가능)
             </p>
             <div
               style={{
