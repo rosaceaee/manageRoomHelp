@@ -11,7 +11,7 @@ interface SectionBoxProps {
   onUpdate: (section: RoomSection) => void;
   onDelete: () => void;
   canDelete: boolean;
-  boardRef: React.RefObject<HTMLDivElement>;
+  boardRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const HANDLES = [

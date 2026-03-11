@@ -9,7 +9,8 @@ interface FurnitureItemProps {
   isSelected: boolean;
   onSelect: () => void;
   onUpdate: (item: FurnitureItemData) => void;
-  boardRef: React.RefObject<HTMLDivElement>;
+  // boardRef: React.RefObject<HTMLDivElement>;
+  boardRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const HANDLES = [

@@ -185,75 +185,73 @@ export default function App() {
             <h1 className="tit">🏠 방 정리를 하자</h1>
 
             {/* 방 공간 관리 박스 */}
-            {!compareMode && (
-              <section
-                className="inner choose-space"
-                style={{
-                  borderBottom: "1px solid #243050",
-                }}
-              >
-                <section
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <h3
-                    style={{
-                      color: "#333",
-                    }}
-                  >
-                    공간
-                  </h3>
-                  <button
-                    onClick={addSection}
-                    style={{
-                      background: "#0A2016",
-                      border: "1px solid #1A5A2A",
-                      borderRadius: 5,
-                      color: "#5ABB7A",
-                      fontSize: 11,
-                      padding: "2px 8px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    + 추가
-                  </button>
-                </section>
 
-                <section className="space-wrap ">
-                  {sections.map((s, i) => (
-                    <div
-                      key={s.id}
-                      onClick={() => {
-                        setSelSectionId(s.id);
-                        setSelItemId(null);
-                      }}
-                      className="space"
-                      style={{
-                        cursor: "pointer",
-                        background:
-                          selSectionId === s.id ? "#0D2A3E" : "#0D1B2E",
-                        border: `1px solid ${SECTION_COLORS[i % 3].border}44`,
-                      }}
-                    >
-                      <button
-                        style={{
-                          width: 10,
-                          height: 10,
-                          borderRadius: 2,
-                          background: SECTION_COLORS[i % 3].border,
-                          flexShrink: 0,
-                        }}
-                      />
-                      <span style={{ fontSize: 12, color: "#C8D8E8", flex: 1 }}>
-                        {s.name}
-                      </span>
-                      <span style={{ fontSize: 10, color: "#3A5A7A" }}>
-                        {s.w}×{s.h}
-                      </span>
-                    </div>
-                  ))}
-                </section>
+            <section
+              className="inner choose-space"
+              style={{
+                borderBottom: "1px solid #243050",
+              }}
+            >
+              <section
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <h3
+                  style={{
+                    color: "#333",
+                  }}
+                >
+                  공간
+                </h3>
+                <button
+                  onClick={addSection}
+                  style={{
+                    background: "#0A2016",
+                    border: "1px solid #1A5A2A",
+                    borderRadius: 5,
+                    color: "#5ABB7A",
+                    fontSize: 11,
+                    padding: "2px 8px",
+                    cursor: "pointer",
+                  }}
+                >
+                  + 추가
+                </button>
               </section>
-            )}
+
+              <section className="space-wrap ">
+                {sections.map((s, i) => (
+                  <div
+                    key={s.id}
+                    onClick={() => {
+                      setSelSectionId(s.id);
+                      setSelItemId(null);
+                    }}
+                    className="space"
+                    style={{
+                      cursor: "pointer",
+                      background: selSectionId === s.id ? "#0D2A3E" : "#0D1B2E",
+                      border: `1px solid ${SECTION_COLORS[i % 3].border}44`,
+                    }}
+                  >
+                    <button
+                      style={{
+                        width: 10,
+                        height: 10,
+                        borderRadius: 2,
+                        background: SECTION_COLORS[i % 3].border,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span style={{ fontSize: 12, color: "#C8D8E8", flex: 1 }}>
+                      {s.name}
+                    </span>
+                    <span style={{ fontSize: 10, color: "#3A5A7A" }}>
+                      {s.w}×{s.h}
+                    </span>
+                  </div>
+                ))}
+              </section>
+            </section>
           </section>
 
           {/* 탭 */}
@@ -284,10 +282,8 @@ export default function App() {
             {tab === "catalog" && (
               <CatalogList
                 customCatalog={customCatalog}
-                compareMode={compareMode}
-                onDragStart={
-                  compareMode ? startTobeCatalogDrag : startCatalogDrag
-                }
+                // compareMode={compareMode}
+                onDragStart={startCatalogDrag}
                 onRemoveCustom={(i) =>
                   setCustomCatalog((p) => p.filter((_, j) => j !== i))
                 }
@@ -432,121 +428,28 @@ export default function App() {
             }}
             className="toolbar-wrap"
           >
-            {compareMode ? (
+            {selItem ? (
               <>
-                {tobeSelItem ? (
-                  <>
-                    <span style={{ fontSize: 12, color: "#7A9AB4" }}>
-                      <strong style={{ color: "#E8E4DC" }}>
-                        {tobeSelItem.icon} {tobeSelItem.label}
-                      </strong>
-                      <span style={{ color: "#3A7A5A", fontSize: 11 }}>
-                        {" "}
-                        · To-Be
-                      </span>
-                    </span>
-                    <Btn onClick={rotateTobeItem}>↻ 회전</Btn>
-                    <Btn danger onClick={deleteTobeItem}>
-                      🗑 삭제
-                    </Btn>
-                    <div
-                      style={{ display: "flex", alignItems: "center", gap: 5 }}
-                    >
-                      <span style={{ fontSize: 11, color: "#3A5A7A" }}>
-                        메모
-                      </span>
-                      <input
-                        value={tobeSelItem.note}
-                        onChange={(e) =>
-                          setTobeItems((p) =>
-                            p.map((it) =>
-                              it.id === tobeSelItemId
-                                ? { ...it, note: e.target.value }
-                                : it
-                            )
-                          )
-                        }
-                        placeholder="메모..."
-                        style={{
-                          background: "#1A2A4A",
-                          border: "1px solid #2A4A6A",
-                          borderRadius: 5,
-                          color: "#C8D8E8",
-                          padding: "4px 8px",
-                          fontSize: 12,
-                          width: 150,
-                          outline: "none",
-                        }}
-                      />
-                    </div>
-                  </>
-                ) : (
-                  ""
-                )}
-                {/* <div style={{ marginLeft: "auto", display: "flex", gap: 7 }}>
-                  <button
-                    onClick={applyTobe}
-                    style={{
-                      background: "#0A2A18",
-                      border: "1px solid #1A6A40",
-                      borderRadius: 7,
-                      color: "#4ABB8A",
-                      padding: "6px 14px",
-                      fontSize: 12,
-                      fontWeight: 700,
-                      cursor: "pointer",
-                    }}
-                  >
-                    ✓ To-Be 적용
-                  </button>
-                  <button
-                    onClick={exitCompareMode}
-                    style={{
-                      background: "#1A1A2A",
-                      border: "1px solid #2A2A4A",
-                      borderRadius: 7,
-                      color: "#6A8AAA",
-                      padding: "6px 12px",
-                      fontSize: 12,
-                      cursor: "pointer",
-                    }}
-                  >
-                    ✕ 닫기
-                  </button>
-                </div> */}
-              </>
-            ) : (
-              <>
-                {selItem ? (
-                  <>
-                    <div className="selected-box-wrap">
-                      <strong className="item">
-                        {selItem.icon} {selItem.label}
-                      </strong>{" "}
-                      선택됨
-                    </div>
+                <div className="selected-box-wrap">
+                  <strong className="item">
+                    {selItem.icon} {selItem.label}
+                  </strong>{" "}
+                  선택됨
+                </div>
 
-                    <div className="btn-wrap">
-                      <Btn onClick={rotateItem} className="btn btn-rotate">
-                        ↻ 회전하기
-                      </Btn>
-                      <Btn
-                        danger
-                        onClick={deleteItem}
-                        className="btn btn-del-box"
-                      >
-                        🗑 도면에서 삭제
-                      </Btn>
-                      <Btn
-                        warn
-                        onClick={toTrash}
-                        className="btn btn-del-furniture"
-                      >
-                        📋 가구 버리기
-                      </Btn>
-                    </div>
+                <div className="btn-wrap">
+                  <Btn onClick={rotateItem} className="btn btn-rotate">
+                    ↻ 회전하기
+                  </Btn>
+                  <Btn danger onClick={deleteItem} className="btn btn-del-box">
+                    🗑 도면에서 삭제
+                  </Btn>
+                  <Btn warn onClick={toTrash} className="btn btn-del-furniture">
+                    📋 가구 버리기
+                  </Btn>
+                </div>
 
-                    {/*  <div
+                {/*  <div
                       style={{
                         marginLeft: "auto",
                         display: "flex",
@@ -581,23 +484,23 @@ export default function App() {
                         }}
                       /> 
                     </div>*/}
-                  </>
-                ) : selSectionId ? (
-                  <div className="selected-box-wrap">
-                    <strong className="item">
-                      {" "}
-                      모서리 드래그로 크기 조절, 이름 더블클릭으로 변경
-                    </strong>
-                  </div>
-                ) : (
-                  <div className="selected-box-wrap">
-                    <strong className="item">
-                      {" "}
-                      가구를 드래그해서 배치하거나 클릭하여 크기 조절 가능
-                    </strong>
-                  </div>
-                )}
-                {/* <button
+              </>
+            ) : selSectionId ? (
+              <div className="selected-box-wrap">
+                <strong className="item">
+                  {" "}
+                  모서리 드래그로 크기 조절, 이름 더블클릭으로 변경
+                </strong>
+              </div>
+            ) : (
+              <div className="selected-box-wrap">
+                <strong className="item">
+                  {" "}
+                  가구를 드래그해서 배치하거나 클릭하여 크기 조절 가능
+                </strong>
+              </div>
+            )}
+            {/* <button
                   onClick={enterCompareMode}
                   style={{
                     marginLeft: "auto",
@@ -622,8 +525,6 @@ export default function App() {
                 >
                   ⊞ As-Is / To-Be 비교 (예정)
                 </button> */}
-              </>
-            )}
           </div>
 
           {/* 캔버스 */}
