@@ -70,6 +70,9 @@ export function SetupModal({ onComplete }: SetupModalProps) {
           <h4 style={{ fontSize: 12, color: "#4A6A8A", marginTop: 4 }}>
             방에 있는 가구와 물건을 관리할 수 있습니다.
           </h4>
+          <h4 style={{ fontSize: 12, color: "rgb(131 159 93)", marginTop: 4 }}>
+            현재 데스크탑만 사용가능합니다.
+          </h4>
         </div>
 
         {step === 1 && (
