@@ -6,7 +6,6 @@ interface BtnProps {
   sm?: boolean;
   green?: boolean;
   red?: boolean;
-  size: "small" | "mid" | "lg";
   className: string;
 }
 
