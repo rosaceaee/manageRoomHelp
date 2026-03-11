@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { CELL_PX, BOARD_W, BOARD_H } from "../../constants";
+import { CELL_PX } from "../../constants";
 import { snapG } from "../../utils/grid";
 import type { RoomSection, SectionColorScheme } from "../../types";
 

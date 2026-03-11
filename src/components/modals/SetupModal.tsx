@@ -119,7 +119,7 @@ export function SetupModal({ onComplete }: SetupModalProps) {
                   >
                     {o.title}
                   </div>
-                  <div style={{ fontSize: 11, color: "#4A6A8A" }}>{o.desc}</div>
+                  {/* <div style={{ fontSize: 11, color: "#4A6A8A" }}>{o.desc}</div> */}
                 </button>
               ))}
             </div>

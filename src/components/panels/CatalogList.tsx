@@ -1,10 +1,10 @@
 import { FURNITURE_CATALOG } from "../../constants";
-import type { CatalogItem, CatalogDrag } from "../../types";
+import type { CatalogItem } from "../../types";
 import "../../assets/custom.scss";
 
 interface CatalogListProps {
   customCatalog: CatalogItem[];
-  compareMode: boolean;
+  // compareMode: boolean;
   onDragStart: (e: React.MouseEvent, item: CatalogItem) => void;
   onRemoveCustom: (index: number) => void;
   onAddCustom: () => void;
@@ -12,7 +12,6 @@ interface CatalogListProps {
 
 export function CatalogList({
   customCatalog,
-  compareMode,
   onDragStart,
   onRemoveCustom,
   onAddCustom,

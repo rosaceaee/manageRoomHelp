@@ -162,7 +162,7 @@ export default function App() {
     setTrashList([]);
     setSections([]);
     setSelItemId(null);
-    exitCompareMode();
+    // exitCompareMode();
     handleClear();
     setShowModal(true);
   };
@@ -481,11 +481,9 @@ export default function App() {
                     </div>
                   </>
                 ) : (
-                  <span style={{ fontSize: 12, color: "#3A5A6A" }}>
-                    To-Be 캔버스에서 가구를 편집하세요
-                  </span>
+                  ""
                 )}
-                <div style={{ marginLeft: "auto", display: "flex", gap: 7 }}>
+                {/* <div style={{ marginLeft: "auto", display: "flex", gap: 7 }}>
                   <button
                     onClick={applyTobe}
                     style={{
@@ -515,7 +513,7 @@ export default function App() {
                   >
                     ✕ 닫기
                   </button>
-                </div>
+                </div> */}
               </>
             ) : (
               <>
