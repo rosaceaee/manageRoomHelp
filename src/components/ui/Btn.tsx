@@ -6,7 +6,8 @@ interface BtnProps {
   sm?: boolean;
   green?: boolean;
   red?: boolean;
-  className: string;
+  size: "small" | "mid" | "lg";
+  className?: string;
 }
 
 export function Btn({
