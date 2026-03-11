@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { SECTION_COLORS, STORAGE_KEY } from "./constants";
+import { SECTION_COLORS } from "./constants";
 import { newId, setUid } from "./utils/id";
 import { usePersist } from "./hooks/usePersist";
 
@@ -7,7 +7,6 @@ import { SetupModal } from "./components/modals/SetupModal";
 import { AddCustomModal } from "./components/modals/AddCustomModal";
 import { RoomCanvas } from "./components/canvas/RoomCanvas";
 import { CatalogList } from "./components/panels/CatalogList";
-import { StatsPanel } from "./components/panels/StatsPanel";
 import { Btn } from "./components/ui/Btn";
 
 import type {
@@ -86,23 +85,23 @@ export default function App() {
   };
 
   //  Compare mode
-  const enterCompareMode = () => {
-    setTobeItems(items.map((it) => ({ ...it, id: newId() })));
-    setTobeSections(sections.map((s) => ({ ...s, id: newId() })));
-    setTobeSelItemId(null);
-    setTobeSelSectionId(null);
-    setCompareMode(true);
-  };
-  const exitCompareMode = () => {
-    setCompareMode(false);
-    setTobeCatalogDrag(null);
-  };
-  const applyTobe = () => {
-    if (!confirm("To-Be 배치를 현재 배치로 덮어쓸까요?")) return;
-    setItems(tobeItems);
-    setSections(tobeSections);
-    exitCompareMode();
-  };
+  // const enterCompareMode = () => {
+  //   setTobeItems(items.map((it) => ({ ...it, id: newId() })));
+  //   setTobeSections(sections.map((s) => ({ ...s, id: newId() })));
+  //   setTobeSelItemId(null);
+  //   setTobeSelSectionId(null);
+  //   setCompareMode(true);
+  // };
+  // const exitCompareMode = () => {
+  //   setCompareMode(false);
+  //   setTobeCatalogDrag(null);
+  // };
+  // const applyTobe = () => {
+  //   if (!confirm("To-Be 배치를 현재 배치로 덮어쓸까요?")) return;
+  //   setItems(tobeItems);
+  //   setSections(tobeSections);
+  //   exitCompareMode();
+  // };
 
   //  Item actions
   const rotateItem = () =>
