@@ -22,12 +22,149 @@ $brwn: #8c6b56;
 $ash: #2c2c29;
 $fff: #fff;
 $oat: #d9d9d9;
+$yl: #e2bd93;
+// init
 
+//
 .wrap {
   display: flex;
   overflow: hidden;
   user-select: none;
   min-height: 100vh;
+  &.set {
+    background-color: $bei;
+
+    .info-wrap {
+      width: 38rem;
+      padding: 2rem;
+      border-radius: 10px;
+      .inner {
+        text-align: left;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
+
+        .tit {
+          font-size: 2rem;
+        }
+
+        .desc {
+          text-align: right;
+          .txt {
+            font-size: 1rem;
+            color: #4a6a8a;
+            margin: 3px;
+          }
+        }
+      }
+    }
+
+    .choose-wrap {
+      .tit {
+        font-size: 1.1rem;
+        color: #7a9ab4;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .roombox-wrap {
+        display: flex;
+        gap: 10px;
+
+        button {
+          &.roomtype-btn {
+            padding: 1.1rem 12px;
+            flex: 1;
+            background: #0d1b2e;
+            border: 1px solid #253450;
+            border-radius: 10px;
+            cursor: "pointer";
+            color: #e8e4dc;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .roomtype-wrap {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      .tit {
+        text-align: center;
+      }
+    }
+
+    .desc-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 1rem;
+      margin-bottom: 2rem;
+      .desc {
+        font-size: 1rem;
+        color: $bei;
+        text-align: center;
+      }
+    }
+
+    .roomname-wrap {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 2rem;
+      flex-direction: column;
+    }
+
+    .confirm-wrap {
+      display: flex;
+      gap: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      font-weight: 700;
+      button {
+        font-size: 1rem;
+        &.back-btn {
+          flex: 1;
+          border: 1px solid #253450;
+          background: transparent;
+        }
+
+        &.confirm-btn {
+          flex: 2;
+          padding: 1.2rem 0px;
+          border: 1px solid #2a6aaa;
+        }
+      }
+    }
+
+    .add-btn {
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: $bei;
+      color: $ash;
+      margin-left: auto;
+    }
+
+    .del-btn {
+      background: transparent;
+      border: 1px solid rgb(255 118 118);
+      border-radius: 6px;
+      color: rgb(255 118 118);
+      font-weight: 700;
+      padding: 6px 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+
   .box {
     &.left {
       background: $bei;
@@ -137,8 +274,6 @@ $oat: #d9d9d9;
           color: $oat;
           font-size: 0.8rem;
         }
-        .furniture-box {
-        }
       }
 
       .bottom-wrap {
@@ -161,11 +296,10 @@ $oat: #d9d9d9;
 
           &.btn-init {
             width: 100%;
-            background: rgb(24, 10, 10);
-            border: 1px solid rgb(58, 26, 26);
-            border-radius: 7px;
+            background: none;
             color: rgb(192, 96, 96);
             cursor: pointer;
+            border: none;
           }
         }
       }
