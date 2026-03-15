@@ -117,7 +117,9 @@ export function SetupModal({ onComplete }: SetupModalProps) {
 
             <div className="desc-wrap">
               <p className="desc">
-                관리할 방 이름을 입력해주세요. (추후 변경 가능)
+                관리할 방 이름을 입력해주세요.
+                {/* <br />
+                (추후 변경 가능) */}
               </p>
 
               {roomType?.k === "two" && names.length < 4 && (
@@ -127,7 +129,7 @@ export function SetupModal({ onComplete }: SetupModalProps) {
                     setNames((p) => [...p, `공간 ${p.length + 1}`])
                   }
                 >
-                  + 공간 추가
+                  + 추가
                 </button>
               )}
             </div>
